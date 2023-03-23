@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Frog33</title>
-    </head>
-    <body>
-        <h1>get page</h1>
-    </body>
-</html>
+{% extends 'frog/base.html' %} 
+
+{% block content %}
+    <h1>{{title}}</h1>
+{% endblock content %}
+
+{% block mainmenu %}
+    <ul>
+        {% for record in records %}
+        <li> 
+           <h2> {{record.title}} </h2>
+           <p> {{record.content}} </p>
+           <p> {{record.pk}} </p>
+           <hr>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock mainmenu %}

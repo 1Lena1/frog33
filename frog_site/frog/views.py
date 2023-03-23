@@ -1,18 +1,37 @@
+from turtle import title
 from django.http import Http404, HttpResponse, HttpResponseNotFound
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Frog
+from django.shortcuts import redirect, render
+
+from .forms import *
+from .models import *
 
 
 def index(request):
     return render(request, 'frog/index.html')
 
 def add(request):
-    return render(request, 'frog/add.html')
+    if request.method == 'POST':
+        form = Add_frog_form(request.POST)
+        if form.is_valid():
+            try:
+                Frog.objects.create(**form.cleaned_data)
+                return redirect('home')
+            except:
+                form.add_error(None, 'error of creating post')
+    form = Add_frog_form(request.POST)
+    content = {
+        'form' : form,
+        'title' : 'add page'
+    }
+    return render(request, 'frog/add.html', content)
 
 def get(request):
-    return render(request, 'frog/get.html')
-
+    context = {
+        'title' : 'get page', 
+        'records' : Frog.objects.all()
+        }
+    return render(request, 'frog/get.html', context=context)
 
 # errors
 # 404
