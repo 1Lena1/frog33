@@ -1,5 +1,4 @@
 {% extends 'frog/base.html' %} 
-
 {% block content %}
     <h1>{{title}}</h1>
 {% endblock content %}
@@ -8,10 +7,14 @@
     <ul>
         {% for record in records %}
         <li> 
-           <h2> {{record.title}} </h2>
-           <p> {{record.content}} </p>
-           <p> {{record.pk}} </p>
-           <hr>
+            <h2> {{record.title}} </h2>
+            <p> {{record.content}} </p>
+            <!-- <p> {{record.pk}} </p> -->
+            <form action="/delete/"  method="get" >
+                <p> delete </p>
+                <input type="submit" value="{{record.pk}}" name = "frog_id"/>
+            </form>
+            <hr>
         </li>
         {% endfor %}
     </ul>
