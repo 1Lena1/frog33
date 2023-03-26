@@ -1,6 +1,12 @@
 {% extends 'frog/base.html' %} 
 
 {% block content %}
+<p>User: {{user}} </p>
+{% if user.is_superuser %}
+<form action="/admin_frogs/">
+    <input type="submit" value="admin_frogs" />
+</form>
+{% endif %}
     <form action="/add/">
         <input type="submit" value="add" />
     </form>

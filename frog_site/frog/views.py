@@ -53,6 +53,13 @@ def delete(request):
     except Frog.DoesNotExist:
         return HttpResponseNotFound("<h2>Frog not found</h2>")    
 
+# admin_frogs
+def admin_frogs(request):
+    context = {
+        'title' : 'admin frogs', 
+        'records' : Frog.objects.get_queryset()
+        }
+    return render(request, 'frog/admin_frogs.html', context=context)
 
 # errors
 # 404

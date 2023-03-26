@@ -20,23 +20,3 @@ class Frog(models.Model):
         return self.title
 
     
-
-# prohibit receiving honeytoken records from ORM
-
-    # def get_queryset(self):
-    #     print('get_queryset is working!!!')
-    #     return super().get_qsueryset().filter(honeytoken=False)
-
-    # def __getattribute__(self, __name: str):
-    #     print(self)
-    #     if self.honeytoken == True:
-    #         print('get honeytoken == True')
-    #         return super().__call__(self, __name)
-    #     print('AttributeError')
-    #     raise AttributeError 
-
-
-    # class Meta:
-    #     verbose_name = 'My favourite frog'
-    #     ordering = ['title']
-

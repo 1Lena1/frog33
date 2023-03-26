@@ -1,0 +1,50 @@
+{% extends 'frog/base.html' %} 
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <h3> Frogs with honeytoken </h3>
+            <table id="admin_frogs" class="table table-bordered" style="width:100%">
+                <thead class="alert-warning">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Honeytoken</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    {% if record.honeytoken %}
+                    <tr>
+                        <th>{{record.pk}}</th>
+                        <th>{{record.title}}</th>
+                        <th>{{record.content}}</th>
+                        <th>{{record.honeytoken}}</th>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js_content%}
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('#admin_frogs').DataTable(
+            {
+                "order":[[0, "abc"]],
+                "pageLenght":10,
+            }
+        );
+    });
+</script>
+
+{% endblock js_content%}
